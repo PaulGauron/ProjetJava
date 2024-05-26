@@ -1,0 +1,39 @@
+{
+  "clients": [
+    {
+      "id_client": 1,
+      "nom_cli": "Dupont",
+      "prenom_cli": "Jean",
+      "adresse_livraison": "123 Rue de la Paix, 75001 Paris",
+      "adresse_facturation": "123 Rue de la Paix, 75001 Paris"
+    },
+    {
+      "id_client": 2,
+      "nom_cli": "Martin",
+      "prenom_cli": "Sophie",
+      "adresse_livraison": "456 Avenue des Champs-Élysées, 75008 Paris",
+      "adresse_facturation": "456 Avenue des Champs-Élysées, 75008 Paris"
+    },
+    {
+      "id_client": 3,
+      "nom_cli": "Bernard",
+      "prenom_cli": "Luc",
+      "adresse_livraison": "789 Boulevard Saint-Germain, 75006 Paris",
+      "adresse_facturation": "789 Boulevard Saint-Germain, 75006 Paris"
+    },
+    {
+      "id_client": 4,
+      "nom_cli": "Robert",
+      "prenom_cli": "Marie",
+      "adresse_livraison": "101 Rue de Rivoli, 75004 Paris",
+      "adresse_facturation": "101 Rue de Rivoli, 75004 Paris"
+    },
+    {
+      "id_client": 5,
+      "nom_cli": "Petit",
+      "prenom_cli": "Julie",
+      "adresse_livraison": "202 Avenue de la République, 75011 Paris",
+      "adresse_facturation": "202 Avenue de la République, 75011 Paris"
+    }
+  ]
+}
