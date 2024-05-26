@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1000.0" styleClass="border-pane"
+            xmlns="http://javafx.com/javafx/8" fx:controller="com.projet.mini_projet.controller.MiniProfilerController"
+            xmlns:fx="http://javafx.com/fxml/1" >
+    <center>
+       <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" spacing="20.0" styleClass="vbox" BorderPane.alignment="CENTER">
+          <children>
+             <Label text="CUSTOMER LIST">
+                <font>
+                   <Font name="System Bold" size="20.0" />
+                </font>
+             </Label>
+             <TableView id="clientTableView" prefHeight="400.0" prefWidth="1060.0">
+               <columns>
+                     <TableColumn minWidth="600.0" prefWidth="600.0" text="CLIENT" >
+                <columns>
+                   <TableColumn id="idCli" minWidth="80.0" prefWidth="80.0" text="ID" />
+                 <TableColumn id="nameCli" minWidth="120.0" prefWidth="120.0" text="Nom" />
+                   <TableColumn id="prenomCli" minWidth="120.0" prefWidth="120.0" text="Prenom" />
+                   <TableColumn id="addressFactCli" minWidth="200.0" prefWidth="200.0" text="Addresse de Facturation" />
+                   <TableColumn id="adresseLivCli" minWidth="200.0" prefWidth="200.0" text="Adresse de Livraison" />
+                </columns>
+                 </TableColumn>
+               </columns>
+               <!--<columns>
+                   <TableColumn minWidth="400.0" prefWidth="400.0" text="Commande">
+               <columns>
+                   <TableColumn id="intitule" minWidth="120.0" prefWidth="120.0" text="Intitule" />
+                   <TableColumn id="countryCol" minWidth="120.0" prefWidth="120.0" text="Country" />
+                   <TableColumn id="phoneCol" minWidth="120.0" prefWidth="120.0" text="Phone" />
+               </columns>
+                   </TableColumn>
+               </columns>-->
+             </TableView>
+             <HBox alignment="CENTER" prefHeight="25.0" prefWidth="200.0" spacing="20.0">
+                <children>
+
+                   <Button id="updateBtn" layoutX="320.0" layoutY="10.0" minHeight="30.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="100.0" text="Update" onAction="#onActionUpdateCustomer" />
+                    <Button id="refreshBtn" layoutX="320.0" layoutY="10.0" minHeight="30.0" mnemonicParsing="false"  prefHeight="30.0" prefWidth="100.0" text="refresh" onAction="#onActionRefreshTable" />
+                </children>
+             </HBox>
+          </children>
+          <padding>
+             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+          </padding>
+       </VBox>
+    </center>
+ </BorderPane>
