@@ -15,17 +15,17 @@ public class Start extends Application{
 
 	public static void  test(){
 		Fichier fichier = new Fichier();
-		fichier.printMots();
+		fichier.printMotsDebut("s");
 	}
 
 	@Override
 	public void start(Stage stage) throws IOException {
-		test();
-		/*FXMLLoader fxmlLoader = new FXMLLoader(Start.class.getResource("hello-view.fxml"));
+		//test();
+		FXMLLoader fxmlLoader = new FXMLLoader(Start.class.getResource("hello-view.fxml"));
 		Scene scene = new Scene(fxmlLoader.load(), 320, 240);
 		stage.setTitle("Hello!");
 		stage.setScene(scene);
-		stage.show();*/
+		stage.show();
 	}
 
 	public static void main(String[] args) {  launch();	}

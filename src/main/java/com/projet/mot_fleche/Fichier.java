@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Fichier {
 	
-	private static final String FICHIER = "com/projet/mot_fleche/utils/liste_francais.txt";
+	private static final String FICHIER = "/com/projet/mot_fleche/utils/liste_francais.txt";
 	private ArrayList <String> listeDeMots = null;
 	
 	public Fichier() {
@@ -21,7 +21,10 @@ public class Fichier {
 	private void ouvrirFichier(){
 		try{
 			InputStream flux = Fichier.class.getResourceAsStream(FICHIER);
-            assert flux != null;
+			if(flux == null){
+				System.out.println("flux :" + flux);
+				System.out.println("le fichier n'a pas été trouvé ");
+			}
             InputStreamReader lecture=new InputStreamReader(flux);
 			BufferedReader buff = new BufferedReader(lecture);
 			String ligne;
@@ -38,7 +41,6 @@ public class Fichier {
 	
 	public void printMots(){
 		System.out.println("affichage des mots présents dans le dictionnaire");
-
 		for (String m  : listeDeMots) {
 			System.out.println(m);
 		}
