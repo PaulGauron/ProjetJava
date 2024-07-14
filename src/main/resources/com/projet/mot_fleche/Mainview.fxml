@@ -7,13 +7,13 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" prefHeight="698.0" prefWidth="915.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/22" fx:controller="com.projet.mot_fleche.HelloController">
+<VBox alignment="CENTER" prefHeight="698.0" prefWidth="915.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.mot_fleche.Controller.MainViewController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <MenuButton mnemonicParsing="false" text="Créer une Grille ">
      <items>
-       <MenuItem mnemonicParsing="false" onMenuValidation="#onGrilleCarreButton" text="Grille Carré" />
+       <MenuItem mnemonicParsing="false" onAction="#onGrilleCarreButton" text="Grille Carré" />
        <MenuItem mnemonicParsing="false" onMenuValidation="#onGrilleRectangleButton" text="Grille Rectangulaire" />
      </items>
    </MenuButton>

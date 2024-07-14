@@ -3,6 +3,7 @@ package com.projet.mot_fleche;
 
 import com.projet.mot_fleche.Fichier;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.application.Application;
@@ -19,15 +20,14 @@ public class Start extends Application{
 	}
 
 	@Override
-	public void start(Stage stage) throws IOException {
+	public void start(Stage primaryStage) throws IOException {
 		//test();
-		FXMLLoader fxmlLoader = new FXMLLoader(Start.class.getResource("hello-view.fxml"));
-		Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-		stage.setTitle("Hello!");
-		stage.setScene(scene);
-		stage.show();
+		Parent root =  FXMLLoader.load(getClass().getResource("/com/projet/mot_fleche/MainView.fxml"));
+		primaryStage.setTitle("Accueil");
+		primaryStage.setScene(new Scene(root, 800, 600));
+		primaryStage.show();
 	}
 
-	public static void main(String[] args) {  launch();	}
+	public static void main(String[] args) {  launch(	);	}
 
 }
