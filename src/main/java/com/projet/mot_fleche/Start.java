@@ -10,6 +10,7 @@ import javafx.application.Application;
 
 
 import java.io.IOException;
+import java.util.Objects;
 
 
 public class Start extends Application{
@@ -24,10 +25,11 @@ public class Start extends Application{
 		//test();
 		Parent root =  FXMLLoader.load(getClass().getResource("/com/projet/mot_fleche/MainView.fxml"));
 		primaryStage.setTitle("Accueil");
-		primaryStage.setScene(new Scene(root, 800, 600));
+		Scene scene = new Scene(root, 800, 600);
+		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
 
-	public static void main(String[] args) {  launch(	);	}
+	public static void main(String[] args) {  launch();	}
 
 }
