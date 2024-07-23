@@ -14,7 +14,7 @@
    <MenuButton mnemonicParsing="false" text="Créer une Grille ">
      <items>
        <MenuItem mnemonicParsing="false" onAction="#onGrilleCarreButton" text="Grille Carré" />
-       <MenuItem mnemonicParsing="false" onMenuValidation="#onGrilleRectangleButton" text="Grille Rectangulaire" />
+       <MenuItem mnemonicParsing="false" onAction="#onGrilleRectangleButton" text="Grille Rectangulaire" />
      </items>
    </MenuButton>
    <Button mnemonicParsing="false" onAction="#onRechercheButton" text="Recherche Mots" />

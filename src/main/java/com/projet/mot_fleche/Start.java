@@ -22,8 +22,7 @@ public class Start extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws IOException {
-		//test();
-		Parent root =  FXMLLoader.load(getClass().getResource("/com/projet/mot_fleche/MainView.fxml"));
+		Parent root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/projet/mot_fleche/MainView.fxml")));
 		primaryStage.setTitle("Accueil");
 		Scene scene = new Scene(root, 800, 600);
 		primaryStage.setScene(scene);

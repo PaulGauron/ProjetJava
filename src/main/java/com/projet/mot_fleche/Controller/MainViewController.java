@@ -10,10 +10,11 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class MainViewController {
 
-    private Parent root;
+    //private Parent root;
     private Scene scene;
     private Stage stage;
 
@@ -28,19 +29,18 @@ public class MainViewController {
     @FXML
     protected void onGrilleCarreButton(ActionEvent event) throws IOException{
         try {
-            /*FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projet/mot_fleche/GrilleView.fxml"));
-            Parent root = fxmlLoader.load(); */
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projet/mot_fleche/GridView.fxml"));
+            Parent root = fxmlLoader.load();
 
-            root =  FXMLLoader.load(getClass().getResource("/com/projet/mot_fleche/GrilleView.fxml"));
+            //root =  FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/com/projet/mot_fleche/GridView.fxml")));
 
             // Passer des paramètres au contrôleur de la nouvelle vue
-           /* GrilleController grille = fxmlLoader.getController();
-            grille.initializeGrid(5, 5);  //créer une grille 5x5
 
-            Stage stage = new Stage();*/
-            stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+
+            Stage stage = new Stage();
+            //stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             stage.setTitle("Grille");
-            scene  = new Scene(root);
+            scene  = new Scene(root,1080,980);
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -51,7 +51,20 @@ public class MainViewController {
 
 
     @FXML
-    protected void onGrilleRectangleButton(){ }
+    protected void onGrilleRectangleButton(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projet/mot_fleche/GridViewRectangle.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Grille Rectangle");
+            scene  = new Scene(root,1080,980);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     protected void onRechercheButton(){ }
