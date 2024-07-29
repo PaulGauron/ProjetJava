@@ -67,5 +67,18 @@ public class MainViewController {
     }
 
     @FXML
-    protected void onRechercheButton(){ }
+    protected void onRechercheButton(){
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/projet/mot_fleche/RechercheMot.fxml"));
+            Parent root = fxmlLoader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Recherche de mot");
+            scene  = new Scene(root,1080,980);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

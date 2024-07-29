@@ -1,7 +1,6 @@
-package com.projet.mot_fleche;
+package com.projet.mot_fleche.classes;
 
 import java.io.BufferedReader;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -9,6 +8,11 @@ import java.util.ArrayList;
 public class Fichier {
 	
 	private static final String FICHIER = "/com/projet/mot_fleche/utils/liste_francais.txt";
+
+	public ArrayList<String> getListeDeMots() {
+		return listeDeMots;
+	}
+
 	private ArrayList <String> listeDeMots = null;
 	
 	public Fichier() {

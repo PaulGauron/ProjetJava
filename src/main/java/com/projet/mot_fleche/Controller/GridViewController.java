@@ -1,5 +1,8 @@
 package com.projet.mot_fleche.Controller;
 
+
+import com.projet.mot_fleche.classes.Definition;
+import com.projet.mot_fleche.classes.ModelGrille;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -15,7 +18,7 @@ public class GridViewController {
         private MenuButton menuButton;
 
         @FXML
-        private RadioButton item1, item2, item3, item4;
+        private RadioButton id5x5, id6x6, id7x7, id8x8;
 
         @FXML
         private GridPane gridPaneCarre;
@@ -23,50 +26,42 @@ public class GridViewController {
     private ToggleGroup toggleGroup;
 
 
-    public int getRows() {
-        return rows;
-    }
-
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-
     @FXML
     public void initialize() {
         toggleGroup = new ToggleGroup();
 
-        item1.setToggleGroup(toggleGroup);
-        item2.setToggleGroup(toggleGroup);
-        item3.setToggleGroup(toggleGroup);
-        item4.setToggleGroup(toggleGroup);
+        id5x5.setToggleGroup(toggleGroup);
+        id6x6.setToggleGroup(toggleGroup);
+        id7x7.setToggleGroup(toggleGroup);
+        id8x8.setToggleGroup(toggleGroup);
 
-        item4.setOnAction(event -> setGridvalue(item4));
-        item3.setOnAction(event -> setGridvalue(item3));
-        item2.setOnAction(event -> setGridvalue(item2));
-        item1.setOnAction(event -> setGridvalue(item1));
+        id5x5.setOnAction(event -> setGridvalue(id5x5));
+        id6x6.setOnAction(event -> setGridvalue(id6x6));
+        id7x7.setOnAction(event -> setGridvalue(id7x7));
+        id8x8.setOnAction(event -> setGridvalue(id8x8));
 
     }
-    private int rows;
+    ModelGrille grille = new ModelGrille();
 
 
     public void setGridvalue(RadioButton selectedItem) {
             String id = selectedItem.getId();
-            switch (id) {
+
+            int row = Integer.parseInt(id.substring(4));
+           /* switch (id) {
                 case "item1":
-                    setRows(5);
-                    System.out.println("item1 selected");
+                    System.out.println("item1 selected " + row);
                     break;
                 case "item2":
-                   setRows(6);
+                    System.out.println("item2 selected" + row);
                     break;
-                case "item3":
-                    setRows(7);
+                case "item3":System.out.println("item3 selected" + row);
                     break;
                 case "item4":
-                    setRows(8);
+                    System.out.println("item4 selected" + row);
                     break;
-            }
-
+            }*/
+       grille.setLargeur(row);
     }
 
 
@@ -81,21 +76,21 @@ public class GridViewController {
                       new BorderWidths(5) // border widths
               );
               BorderStroke borderStrokeCase = new BorderStroke(
-                      Color.LIGHTGRAY, // border color
+                      Color.rgb(110,107,107), // border color
                       BorderStrokeStyle.SOLID, // border style
                       new CornerRadii(7.5), // corner radii
                       new BorderWidths(5) // border widths
               );
-            int rows = getRows();
+
             //random number for definition
-              int randomY = (int)(Math.random()*rows);
-              int randomX = (int)(Math.random()*rows);
+              int randomY = (int)(Math.random()*grille.getLargeur());
+              int randomX = (int)(Math.random()*grille.getLargeur());
 
 
-            for (int i = 0; i < rows; i++) {
-                for (int j = 0; j < rows; j++) {
+            for (int i = 0; i < grille.getLargeur(); i++) {
+                for (int j = 0; j < grille.getLargeur(); j++) {
                     TextField cell = new TextField();
-
+                    cell.setDisable(true);
                     cell.setMinSize(100, 100);
                     cell.setBorder(new Border(borderStrokeCase));
                     gridPaneCarre.setPadding(new Insets(5, 5, 5, 5));
@@ -105,10 +100,9 @@ public class GridViewController {
 
                 }
             }
-            Button definition = new Button("Definition");
-            definition.setMinSize(80, 80);
-            definition.setAlignment(Pos.CENTER);
-            gridPaneCarre.add(definition, randomX, randomY);
+        Definition def = new Definition("definition","HorizontalIndirect");
+            def.setMenuButtonSize(90,80);
+            gridPaneCarre.add(def.getMenuButton(), randomX, randomY);
     }
 }
 

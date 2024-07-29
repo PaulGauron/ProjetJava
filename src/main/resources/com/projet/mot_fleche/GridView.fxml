@@ -17,10 +17,10 @@
          </opaqueInsets></GridPane>
       <Label layoutX="54.0" layoutY="48.0" text="Choisir la taille de la grille " />
         <VBox layoutX="50.0" layoutY="50.0" spacing="10.0" />
-         <RadioButton fx:id="item3" layoutX="325.0" layoutY="48.0" text="7x7" />
-         <RadioButton fx:id="item1" layoutX="212.0" layoutY="48.0" text="5x5" />
-         <RadioButton fx:id="item2" layoutX="270.0" layoutY="48.0" text="6x6" />
-         <RadioButton fx:id="item4" layoutX="381.0" layoutY="48.0" text="8x8" />
+         <RadioButton fx:id="id7x7" layoutX="325.0" layoutY="48.0" text="7x7" />
+         <RadioButton fx:id="id5x5" layoutX="212.0" layoutY="48.0" text="5x5" />
+         <RadioButton fx:id="id6x6" layoutX="270.0" layoutY="48.0" text="6x6" />
+         <RadioButton fx:id="id8x8" layoutX="381.0" layoutY="48.0" text="8x8" />
         <Button layoutX="47.0" layoutY="88.0" mnemonicParsing="false" onAction="#createSquareGrid" text="Afficher Grille" />
     </children>
 </AnchorPane>

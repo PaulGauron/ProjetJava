@@ -1,7 +1,7 @@
 package com.projet.mot_fleche;
 
 
-import com.projet.mot_fleche.Fichier;
+import com.projet.mot_fleche.classes.Fichier;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
