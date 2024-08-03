@@ -5,13 +5,14 @@ public class ModelGrille {
     private int hauteur;
     private int largeur;
 
-    public ModelGrille(int largeur, int hauteur) {
+   /* public ModelGrille(int largeur, int hauteur) {
         this.hauteur = hauteur;
         this.largeur = largeur;
-    }
+    }*/
 
     public ModelGrille() {
-        this(0,0);
+        this.hauteur = 0;
+        this.largeur = 0;
     }
 
     public int getHauteur() {

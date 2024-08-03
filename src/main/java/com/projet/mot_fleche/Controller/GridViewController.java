@@ -4,13 +4,21 @@ package com.projet.mot_fleche.Controller;
 import com.projet.mot_fleche.classes.Definition;
 import com.projet.mot_fleche.classes.ModelGrille;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.paint.Color;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.StackPane;
+
+
 
 public class GridViewController {
 
@@ -23,12 +31,13 @@ public class GridViewController {
         @FXML
         private GridPane gridPaneCarre;
 
-    private ToggleGroup toggleGroup;
+        @FXML
+        private TableView<ModelGrille> tableViewCarre;
 
 
     @FXML
     public void initialize() {
-        toggleGroup = new ToggleGroup();
+        ToggleGroup toggleGroup = new ToggleGroup();
 
         id5x5.setToggleGroup(toggleGroup);
         id6x6.setToggleGroup(toggleGroup);
@@ -65,44 +74,68 @@ public class GridViewController {
     }
 
 
-    public void createSquareGrid(ActionEvent event){
-            //reset de la grille
-        gridPaneCarre.getChildren().clear();
-              // Create a BorderStroke
-              BorderStroke borderStroke = new BorderStroke(
-                      Color.GRAY, // border color
-                      BorderStrokeStyle.SOLID, // border style
-                      new CornerRadii(15), // corner radii
-                      new BorderWidths(5) // border widths
-              );
-              BorderStroke borderStrokeCase = new BorderStroke(
-                      Color.rgb(110,107,107), // border color
-                      BorderStrokeStyle.SOLID, // border style
-                      new CornerRadii(7.5), // corner radii
-                      new BorderWidths(5) // border widths
-              );
+    private StackPane createCell(int i, int j){
+        BorderStroke borderStrokeCase = new BorderStroke(
+                Color.rgb(110,107,107), // border color
+                BorderStrokeStyle.SOLID, // border style
+                new CornerRadii(7.5), // corner radii
+                new BorderWidths(5) // border widths
+        );
 
-            //random number for definition
-              int randomY = (int)(Math.random()*grille.getLargeur());
-              int randomX = (int)(Math.random()*grille.getLargeur());
-
-
-            for (int i = 0; i < grille.getLargeur(); i++) {
-                for (int j = 0; j < grille.getLargeur(); j++) {
-                    TextField cell = new TextField();
-                    cell.setDisable(true);
-                    cell.setMinSize(100, 100);
-                    cell.setBorder(new Border(borderStrokeCase));
-                    gridPaneCarre.setPadding(new Insets(5, 5, 5, 5));
-                    gridPaneCarre.setBorder(new Border(borderStroke));
-                    gridPaneCarre.add(cell, j, i);
-
-
+        StackPane cell = new StackPane();
+        cell.setMinSize(100, 100);
+        cell.setBorder(new Border(borderStrokeCase));
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem option1 = new MenuItem("ajouter def");
+        contextMenu.getItems().addAll(option1);
+        cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.PRIMARY) {
+                    contextMenu.show(cell, event.getScreenX(), event.getScreenY());
                 }
             }
+        });
+
+        // Add actions to the menu items
+        option1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                //System.out.println("("+i+","+j+")"+"case selected");
+            }
+        });
+        return cell;
+    }
+
+    public void createSquareGrid(ActionEvent event){
+        //reset de la grille
+        gridPaneCarre.getChildren().clear();
+        // Create a BorderStroke
+        BorderStroke borderStroke = new BorderStroke(
+                Color.GRAY, // border color
+                BorderStrokeStyle.SOLID, // border style
+                new CornerRadii(15), // corner radii
+                new BorderWidths(5) // border widths
+        );
+        //Set grid pane layout
+        gridPaneCarre.setPadding(new Insets(5, 5, 5, 5));
+        gridPaneCarre.setBorder(new Border(borderStroke));
+
+        //random number for definition
+        int randomY = (int)(Math.random()*grille.getLargeur());
+        int randomX = (int)(Math.random()*grille.getLargeur());
+
+
+        for (int i = 0; i < grille.getLargeur(); i++) {
+            for (int j = 0; j < grille.getLargeur(); j++) {
+                StackPane cell = createCell(i,j);
+                gridPaneCarre.add(cell, j, i);
+            }
+        }
         Definition def = new Definition("definition","HorizontalIndirect");
-            def.setMenuButtonSize(90,80);
-            gridPaneCarre.add(def.getMenuButton(), randomX, randomY);
+        def.setMenuButtonSize(90,80);
+        gridPaneCarre.add(def.getMenuButton(), randomX, randomY);
+
     }
 }
 
