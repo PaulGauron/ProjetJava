@@ -1,32 +1,47 @@
 package com.projet.mot_fleche.classes;
 
-import javafx.scene.control.MenuButton;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 public class Definition {
-    private String intitule;
-    private String direction;
-    private MenuButton menuButton;
+    private final String intitule;
+    private final String direction;
+    private final int id;
+    private StackPane defintion;
 
-    public Definition(String intitule, String direction) {
+    public Definition(String intitule, String direction,int id) {
         this.intitule = intitule;
         this.direction = direction;
-        this.menuButton = new MenuButton(intitule);
-        initializeMenuButton();
+        this.id = id;
+        initializeStackpane();
     }
 
-    private void initializeMenuButton() {
-        MenuItem optionA = new MenuItem("Ajouter définition");
-        MenuItem optionB = new MenuItem("Supprimer définition");
 
-        optionA.setOnAction(e -> ajouter());
-        optionB.setOnAction(e -> supprimer());
+    private void initializeStackpane() {
+        Label DefLabel = new Label(this.intitule);
+        if(this.id == 0 ){
+            this.defintion = new StackPane(DefLabel);
+            DefLabel.setStyle("-fx-text-fill: white;");
+            this.defintion.setBackground(Background.fill(Color.BLACK));
+        }else if(this.id == 1){
+            this.defintion = new StackPane(DefLabel);
+            this.defintion.setBackground(Background.fill(Color.BLACK));
+        }else {
+            this.defintion = new StackPane(DefLabel);
+            this.defintion.setBackground(Background.fill(Color.BLACK));
+        }
 
-        menuButton.getItems().addAll(optionA, optionB);
     }
 
-    public MenuButton getMenuButton() {
-        return menuButton;
+    public StackPane getStackpane() {
+        return defintion;
     }
 
     public void ajouter() {
@@ -35,12 +50,13 @@ public class Definition {
     }
 
     public void supprimer() {
-        System.out.println("Définition supprimée : " + intitule + ", " + direction);
-        // Code pour supprimer l'objet definition
+        Label emptyLabel = new Label("");
+        defintion.getChildren().add(emptyLabel); // Ajouter une étiquette vide
+        defintion.setBackground(Background.fill(Color.WHITE));
     }
 
-    public void setMenuButtonSize(double width, double height) {
-        menuButton.setPrefWidth(width);
-        menuButton.setPrefHeight(height);
+    public void setStackPaneSize(double width, double height) {
+        defintion.setPrefWidth(width);
+        defintion.setPrefHeight(height);
     }
 }

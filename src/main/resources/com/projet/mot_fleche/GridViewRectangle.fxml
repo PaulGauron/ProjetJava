@@ -17,12 +17,12 @@
          </opaqueInsets></GridPane>
       <Label layoutX="54.0" layoutY="48.0" text="Choisir la taille de la grille " />
         <VBox layoutX="50.0" layoutY="50.0" spacing="10.0" />
-         <RadioButton fx:id="item5" layoutX="325.0" layoutY="48.0" text="8x4" />
-         <RadioButton fx:id="item6" layoutX="260.0" layoutY="48.0" text="8x5" />
-         <RadioButton fx:id="item7" layoutX="205.0" layoutY="48.0" text="8x6" />
-         <RadioButton fx:id="item8" layoutX="433.0" layoutY="48.0" text="7x4" />
-        <RadioButton fx:id="item9" layoutX="381.0" layoutY="48.0" text="7x5" />
-        <RadioButton fx:id="item10" layoutX="485.0" layoutY="48.0" text="6x4" />
+         <RadioButton fx:id="id8x4" layoutX="325.0" layoutY="48.0" text="8x4" />
+         <RadioButton fx:id="id8x5" layoutX="260.0" layoutY="48.0" text="8x5" />
+         <RadioButton fx:id="id8x6" layoutX="205.0" layoutY="48.0" text="8x6" />
+         <RadioButton fx:id="id7x4" layoutX="433.0" layoutY="48.0" text="7x4" />
+        <RadioButton fx:id="id7x5" layoutX="381.0" layoutY="48.0" text="7x5" />
+        <RadioButton fx:id="id6x4" layoutX="485.0" layoutY="48.0" text="6x4" />
         <Button layoutX="47.0" layoutY="88.0" mnemonicParsing="false" onAction="#createRectangleGrid" text="Afficher Grille" />
     </children>
 </AnchorPane>

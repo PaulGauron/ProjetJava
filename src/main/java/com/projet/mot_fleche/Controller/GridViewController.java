@@ -31,8 +31,7 @@ public class GridViewController {
         @FXML
         private GridPane gridPaneCarre;
 
-        @FXML
-        private TableView<ModelGrille> tableViewCarre;
+        private int nbDef = 1;
 
 
     @FXML
@@ -70,11 +69,14 @@ public class GridViewController {
                     System.out.println("item4 selected" + row);
                     break;
             }*/
+        grille.setModele(new int[row][row]);
        grille.setLargeur(row);
+       grille.initializeModel(row);
     }
 
 
     private StackPane createCell(int i, int j){
+        System.out.println("enter");
         BorderStroke borderStrokeCase = new BorderStroke(
                 Color.rgb(110,107,107), // border color
                 BorderStrokeStyle.SOLID, // border style
@@ -86,12 +88,12 @@ public class GridViewController {
         cell.setMinSize(100, 100);
         cell.setBorder(new Border(borderStrokeCase));
         ContextMenu contextMenu = new ContextMenu();
-        MenuItem option1 = new MenuItem("ajouter def");
+        MenuItem option1 = new MenuItem("ajouter definition");
         contextMenu.getItems().addAll(option1);
         cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (event.getButton() == MouseButton.PRIMARY) {
+                if (event.getButton() == MouseButton.PRIMARY && nbDef < 6){
                     contextMenu.show(cell, event.getScreenX(), event.getScreenY());
                 }
             }
@@ -101,7 +103,39 @@ public class GridViewController {
         option1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //System.out.println("("+i+","+j+")"+"case selected");
+                    grille.setIdCase(i, j, 1);
+                    Definition def = new Definition("Hallo", "HD", 0);
+                ContextMenu contextMenu = new ContextMenu();
+                MenuItem option1 = new MenuItem("ajouter definition");
+                MenuItem option2 = new MenuItem("supprimer definition");
+                contextMenu.getItems().addAll(option1,option2);
+                def.getStackpane().setOnMouseClicked(new EventHandler<MouseEvent>() {
+                    @Override
+                    public void handle(MouseEvent event) {
+                        if (event.getButton() == MouseButton.PRIMARY) {
+                            contextMenu.show(def.getStackpane(), event.getScreenX(), event.getScreenY());
+                        }
+                    }
+                });
+                // Add actions to the menu items
+                option1.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        def.ajouter();
+                    }
+                });
+                // Add actions to the menu items
+                option2.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        def.supprimer();
+                        grille.setIdCase(i,j,0);
+                        StackPane resetCase = createCell(i,j);
+                        gridPaneCarre.add(resetCase,i,j);
+                    }
+                });
+                    gridPaneCarre.add(def.getStackpane(), j, i);
+                    nbDef++;
             }
         });
         return cell;
@@ -110,6 +144,7 @@ public class GridViewController {
     public void createSquareGrid(ActionEvent event){
         //reset de la grille
         gridPaneCarre.getChildren().clear();
+        grille.initializeModel(grille.getLargeur());
         // Create a BorderStroke
         BorderStroke borderStroke = new BorderStroke(
                 Color.GRAY, // border color
@@ -132,9 +167,10 @@ public class GridViewController {
                 gridPaneCarre.add(cell, j, i);
             }
         }
-        Definition def = new Definition("definition","HorizontalIndirect");
-        def.setMenuButtonSize(90,80);
-        gridPaneCarre.add(def.getMenuButton(), randomX, randomY);
+        Definition def = new Definition("definition","HorizontalIndirect",0);
+        grille.setIdCase(randomY,randomX,1);
+        gridPaneCarre.add(def.getStackpane(), randomX, randomY);
+        //grille.afficher();
 
     }
 }

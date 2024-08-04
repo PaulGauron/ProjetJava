@@ -95,12 +95,5 @@ protected void RechercheMot() {
         if (idY == 7){idX++; idY = 0;}
     }
 
-    // Create a ScrollPane and set the GridPane as its content
-    ScrollPane scrollPane = new ScrollPane();
-    scrollPane.setContent(gridPaneResult);
-    scrollPane.setFitToWidth(true);
-    scrollPane.setFitToHeight(true);
-    scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
-    scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
 }
 }
