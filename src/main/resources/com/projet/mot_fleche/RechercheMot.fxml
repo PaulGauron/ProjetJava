@@ -14,10 +14,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" fillWidth="false" prefHeight="733.0" prefWidth="1058.0" spacing="20.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.mot_fleche.Controller.RechercheMotController">
+<VBox alignment="CENTER" fillWidth="false" prefHeight="733.0" prefWidth="1058.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.projet.mot_fleche.Controller.RechercheMotController">
    <Pane maxWidth="250.0" minWidth="250.0" prefHeight="88.0" prefWidth="302.0">
       <children>
-            <Text layoutX="26.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous pouvez rechercher les mots qui contiennent certaines lettres à des positions précises. Exemple: g_t___x" wrappingWidth="198.0390625" />
+            <Text layoutX="26.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vous pouvez rechercher les mots qui contiennent certaines lettres à des positions précises. Exemple: g_t___" wrappingWidth="198.0390625" />
       </children>
       <VBox.margin>
          <Insets bottom="-30.0" left="600.0" right="67.0" top="-50.0" />
@@ -85,7 +85,7 @@
                </items>
             </MenuButton>
             <Label prefHeight="17.0" prefWidth="129.0" text="Recherche mot à trous" />
-            <TextField prefHeight="25.0" prefWidth="165.0" />
+            <TextField fx:id="TextTrou" prefHeight="25.0" prefWidth="165.0" />
      </buttons>
       <VBox.margin>
          <Insets />

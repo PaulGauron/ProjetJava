@@ -42,6 +42,8 @@ public class GridViewController {
     @FXML
     private Button generateButton;
 
+
+    private Label labelCase = new Label("");
     private int nbDef = 1;
 
 
@@ -114,12 +116,12 @@ public class GridViewController {
         option1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                if(i == (grille.getLargeur() - 1) && j == (grille.getLargeur() - 1) ) {
+                if (i == (grille.getLargeur() - 1) && j == (grille.getLargeur() - 1)) {
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Information");
                     alert.setHeaderText(null);
                     alert.setContentText("Impossible d'ajouté une définition ici");
-                }else {
+                } else {
                     Definition def = new Definition("Hallo", "", 0);
                     setDirection(def, i, j, contextMenu);
                 }
@@ -128,8 +130,9 @@ public class GridViewController {
         return cell;
     }
 
-private void setContextMenu(Definition def, int i, int j) {
+    private void setContextMenu(Definition def, int i, int j) {
         ContextMenu contextMenu = new ContextMenu();
+        VBox vbox = new VBox();
         MenuItem option1 = new MenuItem("ajouter definition");
         MenuItem option2 = new MenuItem("supprimer definition");
         contextMenu.getItems().addAll(option1, option2);
@@ -145,7 +148,7 @@ private void setContextMenu(Definition def, int i, int j) {
         option1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                setDirection(def,i,j,contextMenu);
+                setDirection(def, i, j, contextMenu);
 
             }
         });
@@ -155,76 +158,76 @@ private void setContextMenu(Definition def, int i, int j) {
             public void handle(ActionEvent event) {
                 def.supprimer();
                 grille.setIdCase(i, j, 0);
-               StackPane reset = createCell(i,j);
-               gridPaneCarre.add(reset, j, i);
+                StackPane reset = createCell(i, j);
+                gridPaneCarre.add(reset, j, i);
                 nbDef--;
             }
         });
 
-    if(grille.getIdCase(i,j) == 2 ) {
-        def.setStackPaneSize(50, 50);
-        contextMenu.getItems().remove(0, contextMenu.getItems().size());
-        Definition additionalDef = new Definition("Additional", "VD", 1);
-        additionalDef.setStackPaneSize(50, 50);
-        // Set up the context menu for the additional definition
-        MenuItem optionSupr1 = new MenuItem("supprimer definition 1");
-        MenuItem optionSupr2 = new MenuItem("supprimer definition 2");
-        MenuItem optionSupr3 = new MenuItem("supprimer toutes les definitions");
-        contextMenu.getItems().addAll(optionSupr1, optionSupr2, optionSupr3);
-        int caseNb = (j + 1 + i * 5) - 1;
-        //System.out.println("i: " + i+" j: " + j + "case :" + caseNb);
-        gridPaneCarre.getChildren().get(caseNb).setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.getButton() == MouseButton.PRIMARY) {
-                    contextMenu.show(additionalDef.getStackpane(), event.getScreenX(), event.getScreenY());
+        if (grille.getIdCase(i, j) == 2) {
+            def.setStackPaneSize(50, 50);
+            contextMenu.getItems().remove(0, contextMenu.getItems().size());
+            Definition additionalDef = new Definition("Additional", "VD", 1);
+            additionalDef.setStackPaneSize(50, 50);
+            // Set up the context menu for the additional definition
+            MenuItem optionSupr1 = new MenuItem("supprimer definition 1");
+            MenuItem optionSupr2 = new MenuItem("supprimer definition 2");
+            MenuItem optionSupr3 = new MenuItem("supprimer toutes les definitions");
+            contextMenu.getItems().addAll(optionSupr1, optionSupr2, optionSupr3);
+            int caseNb = (j + 1 + i * 5) - 1;
+            //System.out.println("i: " + i+" j: " + j + "case :" + caseNb);
+            gridPaneCarre.getChildren().get(caseNb).setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    if (event.getButton() == MouseButton.PRIMARY) {
+                        contextMenu.show(additionalDef.getStackpane(), event.getScreenX(), event.getScreenY());
+                    }
                 }
-            }
-        });
-        optionSupr1.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                def.supprimer();
-                grille.setIdCase(i, j, 1);
-                setContextMenu(additionalDef, i, j);
-                gridPaneCarre.add(additionalDef.getStackpane(), j, i);
-                nbDef--;
-            }
-        });
-        optionSupr2.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                additionalDef.supprimer();
-                grille.setIdCase(i, j, 1);
-                setContextMenu(def, i, j);
-                gridPaneCarre.add(def.getStackpane(), j, i);
-                nbDef--;
-            }
-        });
-        optionSupr3.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                grille.setIdCase(i, j, 0);
-                additionalDef.supprimer();
-                def.supprimer();
-                StackPane resetCase = createCell(i, j);
-                gridPaneCarre.add(resetCase, j, i);
-                nbDef -= 2;
-            }
+            });
+            optionSupr1.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    def.supprimer();
+                    grille.setIdCase(i, j, 1);
+                    setContextMenu(additionalDef, i, j);
+                    gridPaneCarre.add(additionalDef.getStackpane(), j, i);
+                    nbDef--;
+                }
+            });
+            optionSupr2.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    additionalDef.supprimer();
+                    grille.setIdCase(i, j, 1);
+                    setContextMenu(def, i, j);
+                    gridPaneCarre.add(def.getStackpane(), j, i);
+                    nbDef--;
+                }
+            });
+            optionSupr3.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    grille.setIdCase(i, j, 0);
+                    additionalDef.supprimer();
+                    def.supprimer();
+                    StackPane resetCase = createCell(i, j);
+                    gridPaneCarre.add(resetCase, j, i);
+                    nbDef -= 2;
+                }
 
-        });
+            });
 
-        // Create a new StackPane to hold both definitions
-        VBox vbox = new VBox();
-        vbox.getChildren().addAll(def.getStackpane(), additionalDef.getStackpane());
-        gridPaneCarre.add(vbox, j, i);
-        nbDef++;
-        System.out.println("nbDef: " + nbDef);
+            // Create a new StackPane to hold both definitions
+
+            vbox.getChildren().addAll(def.getStackpane(), additionalDef.getStackpane());
+            gridPaneCarre.add(vbox, j, i);
+            nbDef++;
+            System.out.println("nbDef: " + nbDef);
+        }
     }
-    }
 
 
-    private void setDirection(Definition def, int i, int j,ContextMenu direction) {
+    private void setDirection(Definition def, int i, int j, ContextMenu direction) {
         direction.getItems().remove(0, direction.getItems().size());
         Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_VI.png")));
         Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_VD.png")));
@@ -239,11 +242,11 @@ private void setContextMenu(Definition def, int i, int j) {
         MenuItem option3 = new MenuItem("fleche HI", imageView3);
         MenuItem option4 = new MenuItem("fleche HD", imageView4);
         System.out.println("i :" + i + " j: " + j + " max : " + (grille.getLargeur() - 1));
-        if (i == (grille.getLargeur() - 1) ) {
+        if (i == (grille.getLargeur() - 1)) {
             direction.getItems().add(option4);
-        }else if (j == (grille.getLargeur() - 1) ) {
+        } else if (j == (grille.getLargeur() - 1)) {
             direction.getItems().add(option2);
-        }else{
+        } else {
             direction.getItems().addAll(option1, option2, option3, option4);
         }
         def.getStackpane().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -257,17 +260,17 @@ private void setContextMenu(Definition def, int i, int j) {
         option1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("fleche vi selected + idcase :" +grille.getIdCase(i,j) );
+                System.out.println("fleche vi selected + idcase :" + grille.getIdCase(i, j));
                 def.setDirection("VI");
                 StackPane.setAlignment(imageView, javafx.geometry.Pos.TOP_CENTER);
-                gridPaneCarre.add(imageView, j+1, i);
+                gridPaneCarre.add(imageView, j + 1, i);
                 if (grille.getIdCase(i, j) == 0) {
                     setContextMenu(def, i, j);
                     gridPaneCarre.add(def.getStackpane(), j, i);
                     nbDef++;
                     grille.setIdCase(i, j, 1);
                     System.out.println("nbDef: " + nbDef);
-                }else {
+                } else {
                     grille.setIdCase(i, j, 2);
                     setContextMenu(def, i, j);
                 }
@@ -277,17 +280,17 @@ private void setContextMenu(Definition def, int i, int j) {
         option2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("fleche vd selected + idcase :" +grille.getIdCase(i,j) );
+                System.out.println("fleche vd selected + idcase :" + grille.getIdCase(i, j));
                 def.setDirection("VD");
                 StackPane.setAlignment(imageView2, javafx.geometry.Pos.TOP_CENTER);
-                gridPaneCarre.add(imageView2, j, i+1);
+                gridPaneCarre.add(imageView2, j, i + 1);
                 if (grille.getIdCase(i, j) == 0) {
                     setContextMenu(def, i, j);
                     gridPaneCarre.add(def.getStackpane(), j, i);
                     nbDef++;
                     grille.setIdCase(i, j, 1);
                     System.out.println("nbDef: " + nbDef);
-                }else {
+                } else {
                     grille.setIdCase(i, j, 2);
                     setContextMenu(def, i, j);
                 }
@@ -296,17 +299,17 @@ private void setContextMenu(Definition def, int i, int j) {
         option3.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("fleche hi selected + idcase :" +grille.getIdCase(i,j) );
+                System.out.println("fleche hi selected + idcase :" + grille.getIdCase(i, j));
                 def.setDirection("HI");
                 StackPane.setAlignment(imageView3, javafx.geometry.Pos.TOP_CENTER);
-                gridPaneCarre.add(imageView3, j, i+1);
+                gridPaneCarre.add(imageView3, j, i + 1);
                 if (grille.getIdCase(i, j) == 0) {
                     setContextMenu(def, i, j);
                     gridPaneCarre.add(def.getStackpane(), j, i);
                     nbDef++;
                     grille.setIdCase(i, j, 1);
                     System.out.println("nbDef: " + nbDef);
-                }else {
+                } else {
                     grille.setIdCase(i, j, 2);
                     setContextMenu(def, i, j);
                 }
@@ -315,18 +318,18 @@ private void setContextMenu(Definition def, int i, int j) {
         option4.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("fleche hd selected + idcase :" +grille.getIdCase(i,j) );
+                System.out.println("fleche hd selected + idcase :" + grille.getIdCase(i, j));
                 def.setDirection("HD");
                 StackPane.setAlignment(imageView4, javafx.geometry.Pos.TOP_CENTER);
-                gridPaneCarre.add(imageView4, j+1, i);
+                gridPaneCarre.add(imageView4, j + 1, i);
                 if (grille.getIdCase(i, j) == 0) {
                     setContextMenu(def, i, j);
                     gridPaneCarre.add(def.getStackpane(), j, i);
                     nbDef++;
                     grille.setIdCase(i, j, 1);
                     System.out.println("nbDef: " + nbDef);
-                }else {
-                    grille.setIdCase(i,j,2);
+                } else {
+                    grille.setIdCase(i, j, 2);
                     setContextMenu(def, i, j);
                 }
             }
@@ -336,8 +339,21 @@ private void setContextMenu(Definition def, int i, int j) {
     }
 
 
+    public void generateRandom() {
+        // Grille 4
 
-        public void generateRandom() {
+        int[][] grille4 = {
+                {2, 3, 0, 1, 4},
+                {6, 0, 0, 1, 0},
+                {2, 3, 0, 5, 0},
+                {6, 0, 0, 0, 0},
+                {1, 3, 0, 0, 0}
+        };
+        grille.setModele(grille4);
+
+        for (int i = 0; i < grille.getLargeur(); i++) {
+            Definition def = new Definition("definition", "", 0);
+            Definition def1 = new Definition("definition1", "", 0);
             Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_HD.png")));
             ImageView imageView4 = new ImageView(image4);
             Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_HI.png")));
@@ -346,73 +362,43 @@ private void setContextMenu(Definition def, int i, int j) {
             ImageView imageView2 = new ImageView(image2);
             Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_VD.png")));
             ImageView imageView = new ImageView(image);
-
-            String[] directionPossible = {"HD","HI","VD","VI"};
-            int gridSize = grille.getLargeur();
-            int subGridSize = (int) Math.sqrt(gridSize);  // Taille de la sous-grille
-            Set<int[]> usedCoords = new HashSet<>(); // Pour s'assurer que les coordonnées sont uniques
-
-            Random random = new Random();
-
-            for (int i = 0; i < 6; i++) {
-                int[] coord;
-                int randomX;
-                int randomY;
-
-                do {
-                    // Sélectionner une sous-grille aléatoire
-                    int subGridX = random.nextInt(subGridSize);
-                    int subGridY = random.nextInt(subGridSize);
-
-                    // Sélectionner une position aléatoire à l'intérieur de cette sous-grille
-                    randomX = subGridX * subGridSize + random.nextInt(subGridSize);
-                    randomY = subGridY * subGridSize + random.nextInt(subGridSize);
-
-                    coord = new int[] {randomX, randomY};
-                } while (usedCoords.contains(coord) || randomX >= gridSize || randomY >= gridSize); // Répéter jusqu'à ce qu'une position valide soit trouvée
-
-                usedCoords.add(coord);
-
-                String randomDirection = directionPossible[random.nextInt(directionPossible.length)];
-                Definition defaultDef = new Definition("definition", randomDirection, 0);
-                grille.setIdCase(randomX, randomY, 1);
-
-                // Ajout des flèches en fonction de la direction
-                switch (randomDirection) {
-                    case "HD":
-                        StackPane.setAlignment(imageView4, Pos.TOP_CENTER);
-                        gridPaneCarre.add(imageView4, randomX + 1, randomY);
-                        break;
-                    case "HI":
-                        StackPane.setAlignment(imageView3, Pos.TOP_CENTER);
-                        gridPaneCarre.add(imageView3, randomX, randomY + 1);
-                        break;
-                    case "VD":
-                        StackPane.setAlignment(imageView, Pos.TOP_CENTER);
-                        gridPaneCarre.add(imageView, randomX, randomY + 1);
-                        break;
-                    case "VI":
-                        StackPane.setAlignment(imageView2, Pos.TOP_CENTER);
-                        gridPaneCarre.add(imageView2, randomX + 1, randomY);
-                        break;
+            for (int j = 0; j < grille.getLargeur(); j++) {
+                if (grille.getIdCase(i, j) == 1) {
+                    gridPaneCarre.add(def.getStackpane(), j, i);
+                    setContextMenu(def, i, j);
+                } else if (grille.getIdCase(i, j) == 2) {
+                    gridPaneCarre.add(def1.getStackpane(), j, i);
+                    setContextMenu(def1, i, j);
                 }
-
-                // Positionner la définition sur la grille
-                setContextMenu(defaultDef, randomY, randomX);
-                gridPaneCarre.add(defaultDef.getStackpane(), randomX, randomY);
+                if (grille.getIdCase(i, j) == 3) {
+                    def.setDirection("HD");
+                    gridPaneCarre.add(imageView4, j, i);
+                }
+                if (grille.getIdCase(i, j) == 4) {
+                    def.setDirection("VI");
+                    gridPaneCarre.add(imageView2, j, i);
+                }
+                if (grille.getIdCase(i, j) == 5) {
+                    def.setDirection("VD");
+                    gridPaneCarre.add(imageView, j, i);
+                }
+                if (grille.getIdCase(i, j) == 6) {
+                    def.setDirection("HI");
+                    gridPaneCarre.add(imageView3, j, i);
+                }
             }
-
-            grille.afficher();
         }
 
 
+        grille.afficher();
+    }
 
 
-        public void createSquareGrid(ActionEvent event){
+    public void createSquareGrid(ActionEvent event) {
         //reset de la grille
         gridPaneCarre.getChildren().clear();
         grille.initializeModel(grille.getLargeur());
-        nbDef =1;
+        nbDef = 1;
         // Create a BorderStroke
         BorderStroke borderStroke = new BorderStroke(
                 Color.GRAY, // border color
@@ -426,8 +412,10 @@ private void setContextMenu(Definition def, int i, int j) {
 
         for (int i = 0; i < grille.getLargeur(); i++) {
             for (int j = 0; j < grille.getLargeur(); j++) {
-                StackPane cell = createCell(i,j);
-                gridPaneCarre.add(cell, j, i);
+                StackPane cell = createCell(i, j);
+                VBox vBoxCase = new VBox();
+                vBoxCase.getChildren().addAll(cell, labelCase);
+                gridPaneCarre.add(vBoxCase, j, i);
             }
         }
         //grille.afficher();
