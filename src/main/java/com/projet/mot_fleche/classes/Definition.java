@@ -11,10 +11,21 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 
 public class Definition {
-    private final String intitule;
-    private final String direction;
-    private final int id;
+    private  String intitule;
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    private  String direction;
+    private  int id;
+    private  Label DefLabel;
     private StackPane defintion;
+
 
     public Definition(String intitule, String direction,int id) {
         this.intitule = intitule;
@@ -25,20 +36,16 @@ public class Definition {
 
 
     private void initializeStackpane() {
-        Label DefLabel = new Label(this.intitule);
-        if(this.id == 0 ){
-            this.defintion = new StackPane(DefLabel);
-            DefLabel.setStyle("-fx-text-fill: white;");
+        this.DefLabel = new Label(this.intitule);
+        this.defintion = new StackPane(this.DefLabel);
+        setStackPaneSize(80,80);
+        DefLabel.setStyle("-fx-text-fill: white;");
+        if(this.id == 0) {
             this.defintion.setBackground(Background.fill(Color.BLACK));
-        }else if(this.id == 1){
-            this.defintion = new StackPane(DefLabel);
-            this.defintion.setBackground(Background.fill(Color.BLACK));
-        }else {
-            this.defintion = new StackPane(DefLabel);
-            this.defintion.setBackground(Background.fill(Color.BLACK));
+        }else{
+            this.defintion.setBackground(Background.fill(Color.BLUE));
         }
-
-    }
+        }
 
     public StackPane getStackpane() {
         return defintion;
@@ -46,17 +53,15 @@ public class Definition {
 
     public void ajouter() {
         System.out.println("Définition ajoutée : " + intitule + ", " + direction);
-        // Code pour ajouter l'objet definition
     }
 
     public void supprimer() {
-        Label emptyLabel = new Label("");
-        defintion.getChildren().add(emptyLabel); // Ajouter une étiquette vide
+        defintion.getChildren().remove(DefLabel);
         defintion.setBackground(Background.fill(Color.WHITE));
     }
 
     public void setStackPaneSize(double width, double height) {
-        defintion.setPrefWidth(width);
-        defintion.setPrefHeight(height);
+        this.defintion.setMinWidth(width);
+        this.defintion.setMinHeight(height);
     }
 }

@@ -1,5 +1,6 @@
 package com.projet.mot_fleche.Controller;
 
+import com.projet.mot_fleche.classes.Definition;
 import com.projet.mot_fleche.classes.ModelGrille;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -22,24 +23,7 @@ public class RectangleGridViewController {
 
     private ToggleGroup toggleGroup2;
 
-    public int getCols() {
-        return cols;
-    }
-
-    public void setCols(int cols) {
-        this.cols = cols;
-    }
-
-    public int getRows() {
-        return rows;
-    }
-
-    public void setRows(int rows) {
-        this.rows = rows;
-    }
-
-    private int rows;
-    private int cols;
+    private int nbDef = 1;
 
     @FXML
     public void initialize(){
@@ -125,10 +109,107 @@ public class RectangleGridViewController {
         option1.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //System.out.println("("+i+","+j+")"+"case selected");
+                grille.setIdCase(i, j, 1);
+                Definition def = new Definition("Hallo", "HD", 0);
+                setContextMenu(def,i,j,1);
+                gridPaneRectangle.add(def.getStackpane(), j, i);
+                nbDef++;
+                System.out.println("nbDef: " + nbDef);
             }
         });
         return cell;
+    }
+
+    private void setContextMenu(Definition def, int i, int j, int nbMenu) {
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem option1 = new MenuItem("ajouter definition");
+        MenuItem option2 = new MenuItem("supprimer definition");
+        contextMenu.getItems().addAll(option1, option2);
+        def.getStackpane().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.PRIMARY) {
+                    contextMenu.show(def.getStackpane(), event.getScreenX(), event.getScreenY());
+                }
+            }
+        });
+        // Add actions to the menu items
+        option1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                addAdditionalDefinition(def, i, j);
+                nbDef++;
+                System.out.println("nbDef: " + nbDef);
+            }
+        });
+        // Add actions to the menu items
+        option2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                def.supprimer();
+                grille.setIdCase(i, j, 0);
+                StackPane reset = createCell(i,j);
+                gridPaneRectangle.add(reset, j, i);
+                nbDef--;
+            }
+        });
+    }
+
+    private void addAdditionalDefinition(Definition existingDefinition, int i, int j) {
+        grille.setIdCase(i, j, 2);
+        Definition additionalDef = new Definition("Additional", "VD", 1);
+        additionalDef.setStackPaneSize(40,40);
+        // Set up the context menu for the additional definition
+        ContextMenu contextMenu = new ContextMenu();
+        MenuItem option1 = new MenuItem("supprimer definition 1");
+        MenuItem option2 = new MenuItem("supprimer definition 2");
+        MenuItem option3 = new MenuItem("supprimer toutes les definitions");
+        contextMenu.getItems().addAll(option1, option2,option3);
+        additionalDef.getStackpane().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                if (event.getButton() == MouseButton.PRIMARY) {
+                    contextMenu.show(additionalDef.getStackpane(), event.getScreenX(), event.getScreenY());
+                }
+            }
+        });
+        option1.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                existingDefinition.supprimer();
+                grille.setIdCase(i,j,1);
+                setContextMenu(additionalDef,i,j,1);
+                gridPaneRectangle.add(additionalDef.getStackpane(), j, i);
+                nbDef--;
+            }
+        });
+        option2.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                additionalDef.supprimer();
+                grille.setIdCase(i, j, 1);
+                setContextMenu(existingDefinition,i,j,1);
+                gridPaneRectangle.add(existingDefinition.getStackpane(), j, i);
+                nbDef--;
+            }
+        });
+        option3.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                grille.setIdCase(i,j,0);
+                additionalDef.supprimer();
+                existingDefinition.supprimer();
+                StackPane resetCase = createCell(i,j);
+                gridPaneRectangle.add(resetCase,j,i);
+                nbDef-=2;
+            }
+
+        });
+
+        // Create a new StackPane to hold both definitions
+        StackPane combinedStackPane = new StackPane();
+        combinedStackPane.getChildren().addAll(existingDefinition.getStackpane(), additionalDef.getStackpane());
+        gridPaneRectangle.add(combinedStackPane, j, i);
     }
 
     public void createRectangleGrid(ActionEvent event){

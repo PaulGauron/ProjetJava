@@ -21,6 +21,7 @@
          <RadioButton fx:id="id5x5" layoutX="212.0" layoutY="48.0" text="5x5" />
          <RadioButton fx:id="id6x6" layoutX="270.0" layoutY="48.0" text="6x6" />
          <RadioButton fx:id="id8x8" layoutX="381.0" layoutY="48.0" text="8x8" />
-        <Button layoutX="47.0" layoutY="88.0" mnemonicParsing="false" onAction="#createSquareGrid" text="Afficher Grille" />
+        <Button fx:id="afficheGrille" layoutX="47.0" layoutY="88.0" mnemonicParsing="false" onAction="#createSquareGrid" text="Afficher Grille" />
+      <Button fx:id="generateButton" layoutX="167.0" layoutY="88.0" mnemonicParsing="false" onAction="#generateRandom" text="Génération aléatoire" visible="false" />
     </children>
 </AnchorPane>
