@@ -61,9 +61,12 @@ On a donc une définition qui est créer, et avec ça le menu contextuelle liée
 La suppression des flèche n'a pas été faites par consequent supprimer une definition laissera malheureusement la flèche liée visible.
 
 Si on ajoute on constate 2 définition dans la même case et le menu contextuelle liée qui change à nouveau.
+(on doit cliquer une 2e fois également pour choisir la direction)
 Je n'ai pas réussi à liée le menu à la case entière pour avoir le menu il faut cliqué sur la partie haut (definition du dessus)
 on a alors le menu qui propose de supprimer la definition 1 (en haut ) la definition 2 (en bas) ou de supprimer toutes les definition.
 
 ![image](https://github.com/user-attachments/assets/a5d8a78e-29b5-4bca-9aef-327feafeeef1)
+
+
 
 
