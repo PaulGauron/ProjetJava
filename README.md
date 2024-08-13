@@ -77,6 +77,8 @@ la génération est sensé être aléatoire grâce à des patterns prédéfinie 
 
 n'ayant eu le temps que de faire 1 seul pattern le boutton ne génère qu'une grille complète poissible.
 
+les définitions ont gardé le nom par défaut car je n'ai pas réussi à afficher une definition liéer au mot.
+
 ![image](https://github.com/user-attachments/assets/82efab51-8d33-4d88-81b6-308db341e660)
 
 
