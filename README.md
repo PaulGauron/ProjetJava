@@ -68,6 +68,16 @@ on a alors le menu qui propose de supprimer la definition 1 (en haut ) la defini
 ![image](https://github.com/user-attachments/assets/a5d8a78e-29b5-4bca-9aef-327feafeeef1)
 ![image](https://github.com/user-attachments/assets/0c9b8656-495b-4b75-8771-5adb85e3aff4)
 
+On peut faire de même sur toute les tailles de grille mais comme dis precedement les flèche ne se retire pas.
+
+Le boutton Génération aléatoire qui apparaît uniquement après avoir afficher une grille ne marche unique que si on choisi 
+la grille 5x5.
+
+la génération est sensé être aléatoire grâce à des patterns prédéfinie que je devais paramétrer moi même et un nombre aléatoire générer qui allais choisir un de ses pattern.
+
+n'ayant eu le temps que de faire 1 seul pattern le boutton ne génère qu'une grille complète poissible.
+
+![image](https://github.com/user-attachments/assets/82efab51-8d33-4d88-81b6-308db341e660)
 
 
 
