@@ -101,7 +101,7 @@ public class GridViewController {
         cell.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (event.getButton() == MouseButton.PRIMARY && nbDef < 6) {
+                if (event.getButton() == MouseButton.PRIMARY && nbDef < 8) {
                     contextMenu.show(cell, event.getScreenX(), event.getScreenY());
                 }
             }
