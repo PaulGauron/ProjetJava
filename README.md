@@ -19,10 +19,30 @@ pour validé le/les choix cliqué sur valider Recherche
 une fois qu'on a entré une lettre on a les mots commençant par celle-ci 
 on peut ajouté un nombre pour compléter la recherche et cliquer sur valider Recherche.
 
+un label est rattaché aux variable sélectionné.
 ![image](https://github.com/user-attachments/assets/51c6d4a1-a891-4aae-946d-09083c3a81b5)
 
-un label est rattaché aux variable sélectionné.
 
 pour changer la recherche il faut cliquer sur Reset avant. 
 
 ![image](https://github.com/user-attachments/assets/ea79c4b5-1bd3-4b8c-b76f-75f7519d2374)
+
+Sur l'autre menu on sélectione d'abbord si la grille et carré ou rectangulaire 
+
+
+![image](https://github.com/user-attachments/assets/db19f9da-2d15-4666-a636-9ffdecf362c9)
+
+Le code pour les grille Rectangulaire n'es pas à jour.
+
+on va donc choisir grille Carré et tomber sur cette page.
+
+On peut choisir la taille de la grille après quoi on clique sur Afficher Grille pour qu'elle  apparaisse.
+
+![image](https://github.com/user-attachments/assets/a4dbde3f-8bec-4219-bdc6-b615e7e2cb70)
+
+
+Ici, je n'ai compléter toute les fonctionnalité que pour la grille 5x5 donc on choisis celle-ci.
+
+
+
+
