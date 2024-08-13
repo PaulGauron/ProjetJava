@@ -43,6 +43,11 @@ On peut choisir la taille de la grille après quoi on clique sur Afficher Grille
 
 Ici, je n'ai compléter toute les fonctionnalité que pour la grille 5x5 donc on choisis celle-ci.
 
+![image](https://github.com/user-attachments/assets/bfa116b6-7aaf-43e1-b777-347f4f66f1e3)
+
+On peut maintenant voir le bouton pour générer aléatoirement les définition et les mot danns la grille
+
+![image](https://github.com/user-attachments/assets/e790f0e0-a58b-4138-937f-b9d7efa68c08)
 
 
 
