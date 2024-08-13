@@ -19,6 +19,4 @@
    </MenuButton>
    <Button mnemonicParsing="false" onAction="#onRechercheButton" text="Recherche Mots" />
 
-    <Label fx:id="welcomeText" />
-    <Button onAction="#onHelloButtonClick" text="Hello!" />
 </VBox>
