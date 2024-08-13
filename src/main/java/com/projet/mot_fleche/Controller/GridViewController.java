@@ -217,7 +217,7 @@ public class GridViewController {
             vbox.getChildren().addAll(def.getStackpane(), additionalDef.getStackpane());
             gridPaneCarre.add(vbox, j, i);
             nbDef++;
-            System.out.println("nbDef: " + nbDef);
+           // System.out.println("nbDef: " + nbDef);
         }
     }
 

@@ -74,7 +74,7 @@ public class ModelGrille {
                     int i = 0;
                     boolean firstpass = true;
                     for (Character lettre : m) {
-                        System.out.println("i :" + i + " count" + count + " mot" + Arrays.toString(m));
+                       // System.out.println("i :" + i + " count" + count + " mot" + Arrays.toString(m));
                         Label labelCase = new Label(lettre.toString().toUpperCase());
                         labelCase.setFont(new Font("Arial", 18));
                         switch (count) {
