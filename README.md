@@ -47,7 +47,15 @@ Ici, je n'ai compléter toute les fonctionnalité que pour la grille 5x5 donc on
 
 On peut maintenant voir le bouton pour générer aléatoirement les définition et les mot danns la grille
 
-![image](https://github.com/user-attachments/assets/e790f0e0-a58b-4138-937f-b9d7efa68c08)
+Tant que la grille est vierge on peut ajouter à la main les definition jusqu'à 8 fois 
+
+![image](https://github.com/user-attachments/assets/16d1c621-44a6-4542-b49c-a8bad62ed7bf)
+
+une fois la case où ajouter la definition choisi on re-clique dessus pour choisir dans quelle direction doit partir le mot liéé.
+
+![image](https://github.com/user-attachments/assets/4c7a0cac-4a4e-4067-ab6b-4c9d65cd3c9f)
+
+
 
 
 
