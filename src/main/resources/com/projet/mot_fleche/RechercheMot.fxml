@@ -60,6 +60,7 @@
             <Label prefHeight="17.0" text="Mot en X lettre :" />
             <MenuButton mnemonicParsing="false" text="Choisir X">
                <items>
+                  <MenuItem mnemonicParsing="false" onAction="#setNblettre" text="2" />
                   <MenuItem mnemonicParsing="false" onAction="#setNblettre" text="3" />
                   <MenuItem mnemonicParsing="false" onAction="#setNblettre" text="4" />
                   <MenuItem mnemonicParsing="false" onAction="#setNblettre" text="5" />

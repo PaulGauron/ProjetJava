@@ -3,12 +3,11 @@ package com.projet.mot_fleche.Controller;
 
 import com.projet.mot_fleche.classes.Definition;
 import com.projet.mot_fleche.classes.ModelGrille;
-import com.projet.mot_fleche.classes.RandomCoordonate;
+import com.projet.mot_fleche.classes.Mot;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -21,11 +20,9 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Font;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 
 public class GridViewController {
@@ -42,8 +39,6 @@ public class GridViewController {
     @FXML
     private Button generateButton;
 
-
-    private Label labelCase = new Label("");
     private int nbDef = 1;
 
 
@@ -343,32 +338,31 @@ public class GridViewController {
         // Grille 4
 
         int[][] grille4 = {
-                {2, 3, 0, 1, 4},
-                {6, 0, 0, 1, 0},
-                {2, 3, 0, 5, 0},
-                {6, 0, 0, 0, 0},
+                {2, 4, 2, 4, 1},
+                {6, 0, 5, 0, 5},
+                {2, 3, 0, 1, 0},
+                {6, 0, 0, 5, 0},
                 {1, 3, 0, 0, 0}
         };
         grille.setModele(grille4);
 
         for (int i = 0; i < grille.getLargeur(); i++) {
-            Definition def = new Definition("definition", "", 0);
-            Definition def1 = new Definition("definition1", "", 0);
-            Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_HD.png")));
-            ImageView imageView4 = new ImageView(image4);
-            Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_HI.png")));
-            ImageView imageView3 = new ImageView(image3);
-            Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_VI.png")));
-            ImageView imageView2 = new ImageView(image2);
-            Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_VD.png")));
-            ImageView imageView = new ImageView(image);
             for (int j = 0; j < grille.getLargeur(); j++) {
+                Definition def = new Definition("definition", "", 0);
+                Image image4 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_HD.png")));
+                ImageView imageView4 = new ImageView(image4);
+                Image image3 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_HI.png")));
+                ImageView imageView3 = new ImageView(image3);
+                Image image2 = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_VI.png")));
+                ImageView imageView2 = new ImageView(image2);
+                Image image = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/com/projet/mot_fleche/images/fleche_VD.png")));
+                ImageView imageView = new ImageView(image);
                 if (grille.getIdCase(i, j) == 1) {
                     gridPaneCarre.add(def.getStackpane(), j, i);
                     setContextMenu(def, i, j);
                 } else if (grille.getIdCase(i, j) == 2) {
-                    gridPaneCarre.add(def1.getStackpane(), j, i);
-                    setContextMenu(def1, i, j);
+                    gridPaneCarre.add(def.getStackpane(), j, i);
+                    setContextMenu(def, i, j);
                 }
                 if (grille.getIdCase(i, j) == 3) {
                     def.setDirection("HD");
@@ -377,6 +371,7 @@ public class GridViewController {
                 if (grille.getIdCase(i, j) == 4) {
                     def.setDirection("VI");
                     gridPaneCarre.add(imageView2, j, i);
+
                 }
                 if (grille.getIdCase(i, j) == 5) {
                     def.setDirection("VD");
@@ -388,9 +383,10 @@ public class GridViewController {
                 }
             }
         }
-
-
+        grille.completePattern(1,gridPaneCarre);
+        nbDef = 9;
         grille.afficher();
+        generateButton.setDisable(false);
     }
 
 
@@ -413,9 +409,7 @@ public class GridViewController {
         for (int i = 0; i < grille.getLargeur(); i++) {
             for (int j = 0; j < grille.getLargeur(); j++) {
                 StackPane cell = createCell(i, j);
-                VBox vBoxCase = new VBox();
-                vBoxCase.getChildren().addAll(cell, labelCase);
-                gridPaneCarre.add(vBoxCase, j, i);
+                gridPaneCarre.add(cell, j, i);
             }
         }
         //grille.afficher();
